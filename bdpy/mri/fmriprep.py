@@ -265,13 +265,13 @@ def create_bdata_fmriprep(dpath, data_mode='volume_native',
 
     # Exclude subject, session, or run
     # TODO: add subject/session, subject/session/run specification
-    for sub in fmriprep.data:
+    for sub in list(fmriprep.data):
         # Exclude subject
         if 'subject' in exclude and sub in exclude['subject']:
             del(fmriprep.data[sub])
             continue
 
-        for i, ses in enumerate(fmriprep.data[sub]):
+        for i, ses in enumerate(list(fmriprep.data[sub])):
             # Exclude session
             if 'session' in exclude and i + 1 in exclude['session']:
                 del(fmriprep.data[sub][ses])
